@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="javafx-object-importer" default="jar" basedir=".">
+  <description>JavaFX Object Importer</description>
+
+  <property name="source.dir" location="src/" />
+  <property name="build.dir" location="bin/" />
+  <property name="jar.dir" location="./" />
+  <property name="doc.dir" location="doc/" />
+  <property name="main.class" value="barray.joi.Main" />
+  <property name="main.jar" value="joi.jar" />
+
+  <target name="clean" description="Clean">
+    <delete dir="${build.dir}" />
+    <delete file="${jar.dir}/${main.jar}" />
+  </target>
+
+  <target name="doc" description="Documentation">
+    <delete dir="${doc.dir}" />
+    <mkdir dir="${doc.dir}" />
+    <javadoc destdir="${doc.dir}">
+      <fileset dir="${source.dir}" />
+    </javadoc>
+  </target>
+
+  <target name="compile" depends="clean" description="Compile">
+    <mkdir dir="${build.dir}" />
+    <javac srcdir="${source.dir}" destdir="${build.dir}" debug="true" includeantruntime="false" />
+  </target>
+
+  <target name="jar" depends="compile" description="Create">
+    <mkdir dir="${jar.dir}" />
+    <jar destfile="${jar.dir}/${main.jar}" basedir="${build.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${main.class}" />
+      </manifest>
+    </jar>
+  </target>
+</project>
