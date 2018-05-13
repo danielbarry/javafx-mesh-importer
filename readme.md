@@ -1,0 +1,4 @@
+# Requirements
+
+* `openjdk`
+* `openjfx`
